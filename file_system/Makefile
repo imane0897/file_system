@@ -3,10 +3,10 @@ cc = gcc
 objs = ${patsubst %.c, %.o, $(wildcard *.c)}
 
 sfs: $(objs)
-	$(cc) $(objs) -g -o sfs
+	$(cc) $(objs) -g3 -o sfs
 
 $(objs): %.o: %.c %.h structure.h
-	$(cc) -c $< -o $@ -g
+	$(cc) -c $< -o $@ -g3
 
 .PHONY: clean
 clean: 

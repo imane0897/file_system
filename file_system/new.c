@@ -2,7 +2,6 @@
 
 void New(char *filename, char *cmdstr, char *pwd, sysStatus *pstatus) {
     int i;
-    time_t temptime;
 
     if (pstatus->disk) {
         printf("\033[31m>>> An SFS has already been opened!\033[0m\n");

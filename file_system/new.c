@@ -1,6 +1,6 @@
 #include "new.h"
 
-void New(char *filename, char *cmdstr, char *pwd, sysStatus *pstatus) {
+void new_fs(char *filename, char *cmdstr, char *pwd, sysStatus *pstatus) {
     int i;
 
     if (pstatus->disk) {

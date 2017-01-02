@@ -7,7 +7,7 @@
 
 #include "structure.h"
 
-void New(
+void new_fs(
 	char * filename, 
 	char * cmdstr, 
 	char * pwd, 

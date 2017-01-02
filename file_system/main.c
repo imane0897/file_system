@@ -49,8 +49,10 @@ int cli(char *filename, char *pwd, char *cmdstr, char **cmdpar) {
         return 17;
     } else if (!strcmp(cmd, "sync")) {
         return 18;
-    } else {
+    } else if (!strcmp(cmd, "exitfs")) {
         return 0;
+    } else {
+        return -1;
     }
 }
 
@@ -113,11 +115,11 @@ int main(int argc, char *argv[]) {
             continue;
         }
         switch (cmd) {
-        case 0:
+        case -1:
             cmderror();
             break;
         case 1:
-            New(filename, cmdpar, pwd, &status);
+            new_fs(filename, cmdpar, pwd, &status);
             sync_file(&status, filename);
             break;
         case 2:
@@ -174,7 +176,6 @@ int main(int argc, char *argv[]) {
         case 18:
             sync_file(&status, filename);
             break;
-
         case 19:
             sync_file(&status, filename);
             status.opened = False;

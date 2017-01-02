@@ -22,7 +22,7 @@ void New(char *filename, char *cmdstr, char *pwd, sysStatus *pstatus) {
     }
     // arrange memory
     memset(pstatus->disk, 0, diskSize);
-    sprintf(pwd, "/");
+    strcpy(pwd, "/");
     // init system status block
     for (i = 0; i < fcbNum; i++) {
         pstatus->fcbs[i].dadFCB = -1;

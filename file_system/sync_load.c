@@ -7,7 +7,7 @@ void sync_file(sysStatus *pstatus, char *filename) {
         printf("\033[31m>>> Error while opening the file!\033[0m\n");
         return;
     }
-    printf("pstatus->disk = %p\n", pstatus->disk);
+
     if (diskSize != fwrite(pstatus->disk, 1, diskSize, fp)) {
         printf("\033[31m>>> Error while writing to the file!\033[0m\n");
         return;

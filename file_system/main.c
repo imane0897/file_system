@@ -12,7 +12,7 @@ int cli(char *filename, char *pwd, char *cmdstr, char **cmdpar) {
         (*cmdpar)++;
     }
     if (!strcmp(cmd, "closefs")) {
-        return -1;
+        return 19;
     } else if (!strcmp(cmd, "newfs")) {
         return 1;
     } else if (!strcmp(cmd, "openfs")) {
@@ -96,13 +96,13 @@ int main(int argc, char *argv[]) {
     int tempInt;
 
     while ((cmd = cli(filename, pwd, cmdstr, &cmdpar)) || status.opened) {
-        
-        if (cmd > 2 && !status.disk) {
+
+        if (!status.disk && (cmd > 2)) {
             printf("\033[31m>>> No SFS opened, please new or open an SFS "
                    "first!\033[0m\n");
             continue;
         }
-        if (status.opened && (cmd < 9 || cmd == 12)) {
+        if (status.opened && (cmd < 9)) {
             printf("\033[31m>>> File opened, please close the file "
                    "first!\033[0m\n");
             continue;
@@ -174,6 +174,14 @@ int main(int argc, char *argv[]) {
         case 18:
             sync_file(&status, filename);
             break;
+
+        case 19:
+            sync_file(&status, filename);
+            status.opened = False;
+            free(status.disk);
+            status.disk = NULL;
+            strcpy(filename, "(NULL)");
+            pwd[0] = 0;
         }
     }
     sync_file(&status, filename);

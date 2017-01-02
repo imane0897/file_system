@@ -1,4 +1,5 @@
 #include "rm.h"
+#include <stdbool.h>
 
 void remove_file(sysStatus *pstatus, char *cmdstr) {
     char filename[1025];
@@ -32,7 +33,7 @@ void remove_file(sysStatus *pstatus, char *cmdstr) {
             pstatus->fcbs[i].filename = NULL;
             pstatus->fcbs[i].create = 0;
             pstatus->fcbs[i].lastChange = 0;
-            pstatus->fcbs[i].flagFoder = False;
+            pstatus->fcbs[i].flagFoder = false;
             freeFCB(pstatus, i);
             clearIB(pstatus, pstatus->fcbs[i].nextIB);
             pstatus->fcbs[i].nextIB = -1;

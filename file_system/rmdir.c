@@ -1,4 +1,5 @@
 #include "rmdir.h"
+#include <stdbool.h>
 
 void remove_dir(sysStatus * pstatus, char * cmdstr)
 {
@@ -48,7 +49,7 @@ void remove_dir(sysStatus * pstatus, char * cmdstr)
 			pstatus->fcbs[i].filename = NULL;
 			pstatus->fcbs[i].create = 0;
 			pstatus->fcbs[i].lastChange = 0;
-			pstatus->fcbs[i].flagFoder = False;
+			pstatus->fcbs[i].flagFoder = false;
 			freeFCB(pstatus, i);
 			writeFCB(pstatus, i);
 			return ;

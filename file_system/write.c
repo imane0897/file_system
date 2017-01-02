@@ -34,7 +34,7 @@ void write_file(sysStatus *pstatus, char *cmdstr) {
     printf(">>> Writing starts from %d\n", begin);
     p = begin;
     printf("\033[32m>>> end with <F12><Enter> in one line\033[0m\n");
-    while (True) {
+    while (true) {
         printf("<<< ");
         memset(buf, 0, sizeof(buf));
         fgets(buf, 1024, stdin);

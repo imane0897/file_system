@@ -5,9 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <stdbool.h>
 
-extern const char True;
-extern const char False;
 extern const int diskSize;
 extern const int contentSize;
 

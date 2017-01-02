@@ -2,6 +2,7 @@
 #include <errno.h>
 
 void sync_file(sysStatus *pstatus, char *filename) {
+    printf("filename: %s\n", filename);
     FILE *fp = fopen(filename, "wb");
     if (!fp) {
         printf("\033[31m>>> Error while opening the file!\033[0m\n");

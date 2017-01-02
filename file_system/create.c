@@ -1,4 +1,5 @@
 #include "create.h"
+#include <stdbool.h>
 
 void create_file(
 	char * pwd,
@@ -39,7 +40,7 @@ void create_file(
 	}
 	// new a directory in FCB
 	newfcbid = pstatus->free_fcb;
-	initFCB(pstatus, newfcbid, False);
+	initFCB(pstatus, newfcbid, false);
 	pstatus->fcbs[newfcbid].nextFCB = pstatus->fcbs[pstatus->pwd].subFCB;
 	pstatus->fcbs[newfcbid].strlen = strlen(filename);
 	pstatus->fcbs[newfcbid].filename = (char *) malloc(pstatus->fcbs[newfcbid].strlen+2);

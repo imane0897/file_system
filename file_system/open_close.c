@@ -38,7 +38,7 @@ void open_file(sysStatus * pstatus, char * cmdstr, char * pwd)
 				strcpy(pwd+strlen(pwd), pstatus->fcbs[to].filename);
 			}
 			pstatus->pwd = to;
-			pstatus->opened = True;
+			pstatus->opened = true;
 			return ;
 		}
 	}
@@ -49,7 +49,7 @@ void close_file(sysStatus * pstatus, char * cmdstr, char * pwd)
 {
 	char * i;
 	pstatus->pwd = pstatus->fcbs[pstatus->pwd].dadFCB;
-	pstatus->opened = False;
+	pstatus->opened = false;
 	for ( i = pwd+strlen(pwd)-1; *i != '/'; i -- )
 	{
 		*i = 0;

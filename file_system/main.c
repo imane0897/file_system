@@ -95,14 +95,14 @@ int main(int argc, char *argv[]) {
     FCB tempFCB;
     int tempInt;
 
-    while ((cmd = cli(filename, pwd, cmdstr, &cmdpar)) || status.opened) {
+    while ((cmd = cli(filename, pwd, cmdstr, &cmdpar))) {
         
-        if (cmd > 2 && !status.disk) {
+        if (!status.disk && (cmd > 2)) {
             printf("\033[31m>>> No SFS opened, please new or open an SFS "
                    "first!\033[0m\n");
             continue;
         }
-        if (status.opened && (cmd < 9 || cmd == 12)) {
+        if (status.opened && (cmd < 9)) {
             printf("\033[31m>>> File opened, please close the file "
                    "first!\033[0m\n");
             continue;

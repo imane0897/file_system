@@ -26,7 +26,7 @@ void make_dir(char *pwd, char *cmdstr, sysStatus *pstatus) {
     }
     /* new a directory in FCB */
     newfcbid = pstatus->free_fcb;
-    initFCB(pstatus, newfcbid, True);
+    initFCB(pstatus, newfcbid, true);
     pstatus->fcbs[newfcbid].nextFCB = pstatus->fcbs[pstatus->pwd].subFCB;
     pstatus->fcbs[newfcbid].strlen = strlen(filename);
     pstatus->fcbs[newfcbid].filename =

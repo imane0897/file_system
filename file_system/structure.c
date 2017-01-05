@@ -14,20 +14,23 @@ void copyContent(char **dp, char **mp, int size) {
 }
 
 void freeFCB(sysStatus *pstatus, int x) {
-    char *dp = pstatus->disk, *mp;
+    char *dp = pstatus->disk;
+    char *mp;
     pstatus->free_fcb = x;
     mp = (char *)&(pstatus->free_fcb);
     copyContent(&dp, &mp, sizeof(int));
 }
 
-void initFCB(sysStatus *pstatus, int x, boolean flagFoder) {
+void initFCB(sysStatus *pstatus, int x, boolean flagFolder) {
     time_t temptime;
     freeFCB(pstatus, pstatus->fcbs[x].nextFCB);
+
     pstatus->fcbs[x].dadFCB = pstatus->pwd;
     pstatus->fcbs[x].nextFCB = -1;
     pstatus->fcbs[x].subFCB = -1;
-    pstatus->fcbs[x].flagFoder = flagFoder;
+    pstatus->fcbs[x].flagFolder = flagFolder;
     time(&temptime);
+
     pstatus->fcbs[x].create = temptime;
     pstatus->fcbs[x].lastChange = temptime;
     pstatus->fcbs[x].size = 0;
@@ -56,8 +59,10 @@ void writeFCB(sysStatus *pstatus, int fcbid) {
     copyContent(&dp, &mp, sizeof(int));
     mp = (char *)&(pstatus->fcbs[fcbid].strlen);
     copyContent(&dp, &mp, sizeof(int));
-    *dp = pstatus->fcbs[fcbid].flagFoder;
+
+    *dp = pstatus->fcbs[fcbid].flagFolder;
     dp++;
+
     mp = (char *)&(pstatus->fcbs[fcbid].create);
     copyContent(&dp, &mp, sizeof(long));
     mp = (char *)&(pstatus->fcbs[fcbid].lastChange);
@@ -67,6 +72,7 @@ void writeFCB(sysStatus *pstatus, int fcbid) {
     mp = (char *)&(pstatus->fcbs[fcbid].nextIB);
     copyContent(&dp, &mp, sizeof(int));
     mp = pstatus->fcbs[fcbid].filename;
+
     copyContent(&dp, &mp, pstatus->fcbs[fcbid].strlen);
     *dp = 0;
     return;
@@ -83,7 +89,7 @@ void readFCB(sysStatus *pstatus, int fcbid, FCB *dest) {
     copyContent(&mp, &dp, sizeof(int));
     mp = (char *)&(dest->strlen);
     copyContent(&mp, &dp, sizeof(int));
-    dest->flagFoder = *dp;
+    dest->flagFolder = *dp;
     dp++;
     mp = (char *)&(dest->create);
     copyContent(&mp, &dp, sizeof(long));
@@ -111,7 +117,7 @@ void printFCB(FCB buf) {
     printf("dad: %d\nnext: %d\nsub: %d\nname: %s\nstrlen: %d\n"
            "flag: %s\ncreate: %s\nlast: %s\nsize: %d\nnextIB: %d\n",
            buf.dadFCB, buf.nextFCB, buf.subFCB, buf.filename, buf.strlen,
-           buf.flagFoder ? "True" : "False", c, l, buf.size, buf.nextIB);
+           buf.flagFolder ? "True" : "False", c, l, buf.size, buf.nextIB);
 }
 
 void writeIBp(sysStatus *pstatus, int id, int next) {
@@ -128,7 +134,7 @@ void freeIBp(sysStatus *pstatus, int id) {
 
 void clearIB(sysStatus *pstatus, int id) {
     int i;
-    if (-1 == id) {
+    if (id == -1) {
         return;
     }
     for (i = id; ~pstatus->ibs[i].nextIB; i = pstatus->ibs[i].nextIB)

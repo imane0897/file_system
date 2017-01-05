@@ -120,10 +120,10 @@ int main(int argc, char *argv[]) {
             break;
         case 1:
             new_fs(filename, cmdpar, pwd, &status);
-            sync_file(&status, filename);
+            sync_fs(&status, filename);
             break;
         case 2:
-            load_file(&status, cmdpar, filename, pwd);
+            load_fs(&status, cmdpar, filename, pwd);
             break;
         case 3:
             make_dir(pwd, cmdpar, &status);
@@ -174,17 +174,17 @@ int main(int argc, char *argv[]) {
             printStatus();
             break;
         case 18:
-            sync_file(&status, filename);
+            sync_fs(&status, filename);
             break;
         case 19:
-            sync_file(&status, filename);
-            status.opened = False;
+            sync_fs(&status, filename);
+            status.opened = false;
             free(status.disk);
             status.disk = NULL;
             strcpy(filename, "(NULL)");
             pwd[0] = 0;
         }
     }
-    sync_file(&status, filename);
+    sync_fs(&status, filename);
     return 0;
 }

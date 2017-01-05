@@ -24,12 +24,12 @@ void cd(sysStatus *pstatus, char *cmdstr, char *pwd) {
             return;
         } else if (!strcmp("/", filename)) {
             pstatus->pwd = 0;
-            sprintf(pwd, "/");
+            strcpy(pwd, "/");
         } else if (-1 == to) {
             printf("\033[31m>>> Name does not exist!\033[0m\n");
             return;
         } else {
-            if (!pstatus->fcbs[to].flagFoder) {
+            if (!pstatus->fcbs[to].flagFolder) {
                 printf("\033[31m>>> Not a folder!\033[0m\n");
                 return;
             }

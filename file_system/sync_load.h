@@ -6,8 +6,8 @@
 
 #include "structure.h"
 
-void sync_file(sysStatus * pstatus, char * filename);
+void sync_fs(sysStatus * pstatus, char * filename);
 
-void load_file(sysStatus * pstatus, char * cmdstr, char * filename, char * pwd);
+void load_fs(sysStatus * pstatus, char * cmdstr, char * filename, char * pwd);
 
 #endif

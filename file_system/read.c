@@ -5,8 +5,7 @@ char readChar(sysStatus *pstatus, int i) {
     block = i / contentSize;
     moveby = i - block * contentSize;
     for (blockID = pstatus->fcbs[pstatus->pwd].nextIB; block--;
-         blockID = pstatus->ibs[blockID].nextIB)
-        ;
+         blockID = pstatus->ibs[blockID].nextIB);
     return pstatus->disk[512 * (64 + blockID) + moveby + sizeof(int)];
 }
 

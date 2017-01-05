@@ -18,7 +18,7 @@ void fcbs(sysStatus *pstatus, char *cmdstr) {
             printf("%-8d|%d\t|%d\t|%d\t|%s\t|%s\t|%s\t|%d\t|%d\t|%s\n", i,
                    pstatus->fcbs[i].dadFCB, pstatus->fcbs[i].nextFCB,
                    pstatus->fcbs[i].subFCB,
-                   pstatus->fcbs[i].flagFoder ? "True" : "False", c, l,
+                   pstatus->fcbs[i].flagFolder ? "True" : "False", c, l,
                    pstatus->fcbs[i].size, pstatus->fcbs[i].nextIB,
                    pstatus->fcbs[i].filename);
         }
@@ -31,7 +31,7 @@ void fcbs(sysStatus *pstatus, char *cmdstr) {
         printf("%-8d|%d\t|%d\t|%d\t|%s\t|%s\t|%s\t|%d\t|%d\t|%s\n", id,
                pstatus->fcbs[id].dadFCB, pstatus->fcbs[id].nextFCB,
                pstatus->fcbs[id].subFCB,
-               pstatus->fcbs[id].flagFoder ? "True" : "False", c, l,
+               pstatus->fcbs[id].flagFolder ? "True" : "False", c, l,
                pstatus->fcbs[id].size, pstatus->fcbs[id].nextIB,
                pstatus->fcbs[id].filename);
         printf("[IB]");

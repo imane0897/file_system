@@ -25,7 +25,6 @@ void writeChar(sysStatus *pstatus, int i, char ch) {
 void write_file(sysStatus *pstatus, char *cmdstr) {
     int begin = 0, p, i, length;
     char buf[1024];
-    long *endplong = (long *)buf;
     sscanf(cmdstr, "%d", &begin);
     if (begin > pstatus->fcbs[pstatus->pwd].size) {
         begin = pstatus->fcbs[pstatus->pwd].size;
@@ -33,19 +32,18 @@ void write_file(sysStatus *pstatus, char *cmdstr) {
     }
     printf(">>> Writing starts from %d\n", begin);
     p = begin;
-    printf("\033[32m>>> end with <F12><Enter> in one line\033[0m\n");
+    printf("\033[32m>>> end with .<Enter> in one line\033[0m\n");
     while (True) {
         printf("<<< ");
         memset(buf, 0, sizeof(buf));
         fgets(buf, 1024, stdin);
-        if ((8 == sizeof(long) && *endplong == 11537157872411) ||
-            (4 == sizeof(long) && *endplong == 875715355)) {
+        if(strcmp(buf, ".\n") == 0)
             break;
-        }
         length = strlen(buf);
         for (i = 0; i < length; p++, i++) {
             writeChar(pstatus, p, buf[i]);
         }
+        
     }
     if (p > pstatus->fcbs[pstatus->pwd].size) {
         pstatus->fcbs[pstatus->pwd].size = p;

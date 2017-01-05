@@ -1,7 +1,6 @@
 #include "open_close.h"
 
 void open_file(sysStatus *pstatus, char *cmdstr, char *pwd) {
-    char *i;
     int to;
     char filename[1025];
 
@@ -13,11 +12,11 @@ void open_file(sysStatus *pstatus, char *cmdstr, char *pwd) {
     } else {
         sscanf(cmdstr, "%s", filename);
         to = checkExist(pstatus, filename);
-        if (-1 == to) {
+        if (to == -1) {
             printf("\033[31m>>> Name does not exist!\033[0m\n");
             return;
         } else {
-            if (pstatus->fcbs[to].flagFoder) {
+            if (pstatus->fcbs[to].flagFolder) {
                 printf("\033[31m>>> Not a file!\033[0m\n");
                 return;
             }
@@ -36,14 +35,14 @@ void open_file(sysStatus *pstatus, char *cmdstr, char *pwd) {
 }
 
 void close_file(sysStatus *pstatus, char *cmdstr, char *pwd) {
-    char *i;
+//    char *i;
     pstatus->pwd = pstatus->fcbs[pstatus->pwd].dadFCB;
     pstatus->opened = False;
-    for (i = pwd + strlen(pwd) - 1; *i != '/'; i--) {
-        *i = 0;
-    }
-    if (pstatus->pwd) {
-        *i = 0;
-    }
+//    for (i = pwd + strlen(pwd) - 1; *i != '/'; i--) {
+//        *i = 0;
+//    }
+//    if (pstatus->pwd) {
+//        *i = 0;
+//    }
     return;
 }

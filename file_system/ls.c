@@ -14,7 +14,7 @@ void do_ls(sysStatus *pstatus) {
             l = ctime(&(pstatus->fcbs[i].lastChange));
             l[strlen(l) - 1] = 0;
             printf("%d\t|%s\t|%s\t|", pstatus->fcbs[i].size, c, l);
-            if (pstatus->fcbs[i].flagFoder) {
+            if (pstatus->fcbs[i].flagFolder) {
                 printf("\033[34m");
             }
             printf("%s\033[0m\n", pstatus->fcbs[i].filename);

@@ -11,15 +11,16 @@ void remove_dir(sysStatus *pstatus, char *cmdstr) {
     } else {
         sscanf(cmdstr, "%s", filename);
     }
+
     for (i = pstatus->fcbs[pstatus->pwd].subFCB, last = -1; i != -1;
          i = pstatus->fcbs[i].nextFCB) {
         if (!strcmp(filename, pstatus->fcbs[i].filename)) {
-            if (!pstatus->fcbs[i].flagFoder) {
+            if (!pstatus->fcbs[i].flagFolder) {
                 printf("\033[31m>>> Not a Folder!\033[0m\n");
                 return;
             }
             if (~pstatus->fcbs[i].subFCB) {
-                printf("\033[31m>>> Folder is not empry!\033[0m\n");
+                printf("\033[31m>>> Folder is not empty!\033[0m\n");
                 return;
             }
             if (-1 == last) {
@@ -36,7 +37,7 @@ void remove_dir(sysStatus *pstatus, char *cmdstr) {
             pstatus->fcbs[i].filename = NULL;
             pstatus->fcbs[i].create = 0;
             pstatus->fcbs[i].lastChange = 0;
-            pstatus->fcbs[i].flagFoder = False;
+            pstatus->fcbs[i].flagFolder = False;
             freeFCB(pstatus, i);
             writeFCB(pstatus, i);
             return;

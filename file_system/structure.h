@@ -23,8 +23,8 @@ typedef struct FCB {
     int nextFCB;
     int subFCB;
     char *filename;
-    int strlen; // (char *) malloc(pstatus->fcbs[newfcbid].strlen+2);
-    boolean flagFoder;
+    int strlen;
+    boolean flagFolder;
     time_t create;
     time_t lastChange;
     int size;
@@ -47,7 +47,7 @@ typedef struct sysStatus {
 
 void freeFCB(sysStatus *pstatus, int x);
 
-void initFCB(sysStatus *pstatus, int x, boolean flagFoder);
+void initFCB(sysStatus *pstatus, int x, boolean flagFolder);
 
 int checkExist(sysStatus *pstatus, char *name);
 

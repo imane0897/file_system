@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <string.h>
-
+#include <stdbool.h>
 #include "structure.h"
 
 void create_file(char * pwd, char * cmdstr, sysStatus * pstatus);

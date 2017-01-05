@@ -1,7 +1,7 @@
 #include "sync_load.h"
 #include <errno.h>
 
-void sync_file(sysStatus *pstatus, char *filename) {
+void sync_fs(sysStatus *pstatus, char *filename) {
     FILE *fp = fopen(filename, "wb");
     if (!fp) {
         printf("\033[31m>>> Error while opening the file!\033[0m\n");
@@ -17,7 +17,7 @@ void sync_file(sysStatus *pstatus, char *filename) {
     }
 }
 
-void load_file(sysStatus *pstatus, char *cmdstr, char *filename, char *pwd) {
+void load_fs(sysStatus *pstatus, char *cmdstr, char *filename, char *pwd) {
     FILE *fp = NULL;
     int i;
     if (pstatus->disk) {
